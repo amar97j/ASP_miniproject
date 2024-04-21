@@ -14,6 +14,7 @@
             <th>Location URL</th>
             <th>Branch Manager</th>
             <th>Employee Count</th>
+            <th> Actions </th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
                 <td><a href="@branch.LocationURL">🌐</a></td>
                 <td>@branch.BranchManager</td>
                 <td>@branch.EmployeeCount</td>
+                <td><a href="@Url.Action("Edit","Bank", new { id = branch.Id})">Edit</a></td>
             </tr>
         }
     </tbody>

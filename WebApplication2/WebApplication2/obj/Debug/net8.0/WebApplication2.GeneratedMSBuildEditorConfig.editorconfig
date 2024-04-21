@@ -22,8 +22,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFua1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/83320/Desktop/WebApplication2/WebApplication2/Views/Bank/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFua1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/83320/Desktop/WebApplication2/WebApplication2/Views/Bank/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFua1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/83320/Desktop/WebApplication2/WebApplication2/Views/Bank/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFua1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/83320/Desktop/WebApplication2/WebApplication2/Views/Bank/Index.cshtml]

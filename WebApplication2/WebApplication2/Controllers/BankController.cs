@@ -18,27 +18,30 @@ namespace WebApplication2.Controllers
 
         public IActionResult Index()
         {
-
-            return View(bankBranches);
+            var context = new BankContext();
+            return View(context.BankBranches.ToList());
         }
 
 
         public IActionResult Details(int id)
         {
-            var branch = bankBranches.FirstOrDefault(b => b.Id == id);
-            if (branch == null)
+            using (var context = new BankContext())
             {
-                return NotFound();
-            }
+                var branch = context.BankBranches.Find(id);
+                if (branch == null)
+                {
+                    return NotFound();
+                }
 
-            return View(branch);
+                return View(branch);
+            }
         }
 
         [HttpGet]
         public IActionResult Create()
         {
             var form = new NewBranchForm();
-           
+
             return View(form);
         }
 
@@ -48,14 +51,22 @@ namespace WebApplication2.Controllers
 
             if (ModelState.IsValid)
             {
-                var newBranch = new BankBranch
+                using (var context = new BankContext())
                 {
-                    LocationName = branchForm.LocationName,
-                    LocationURL = branchForm.LocationURL,
-                    BranchManager = branchForm.BranchManager,
-                    EmployeeCount = branchForm.EmployeeCount
-                };
-                bankBranches.Add(newBranch);
+                    var newBranch = new BankBranch
+                    {
+                        LocationName = branchForm.LocationName,
+                        LocationURL = branchForm.LocationURL,
+                        BranchManager = branchForm.BranchManager,
+                        EmployeeCount = branchForm.EmployeeCount
+
+                    };
+
+                    context.BankBranches.Add(newBranch);
+                    context.SaveChanges();
+
+                }
+
 
 
                 return RedirectToAction("Index");
@@ -64,10 +75,82 @@ namespace WebApplication2.Controllers
             return View(branchForm);
         }
 
-        
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            using (var context = new BankContext())
+            {
+                var branch = context.BankBranches.Find(id);
+                if (branch == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                var form = new NewBranchForm();
+                form.LocationURL = branch.LocationURL;
+                form.BranchManager = branch.BranchManager;
+                form.LocationName = branch.LocationName;
+                form.EmployeeCount = branch.EmployeeCount;
+
+                return View(form);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, NewBranchForm newBranchForm)
+        {
+
+            using (var context = new BankContext())
+            {
+                var branch = context.BankBranches.Find(id);
+                if (branch != null)
+                {
+                    branch.LocationName = newBranchForm.LocationName;
+                    branch.LocationURL = newBranchForm.LocationURL;
+                    branch.BranchManager = newBranchForm.BranchManager;
+                    branch.EmployeeCount = newBranchForm.EmployeeCount;
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            using (var context = new BankContext())
+            {
+                    var branch = context.BankBranches.Find(id);
+                    if (branch == null)
+                    {
+                    return RedirectToAction("Index");
+                }
+
+                    return View(branch);
+                }
+            
+           
+            }
+
+        [HttpPost]
+        public IActionResult Delete(int id, BankBranch b)
+        {
+            using (var context = new BankContext())
+            {
+                var branch = context.BankBranches.Find(id);
+                if (branch == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                context.BankBranches.Remove(branch);
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
     }
 }
-
-
-
-
