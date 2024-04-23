@@ -5,11 +5,27 @@
 namespace WebApplication2.Migrations
 {
     /// <inheritdoc />
-    public partial class AddEmployees : Migration
+    public partial class Inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "BankBranches",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    LocationName = table.Column<string>(type: "TEXT", nullable: false),
+                    LocationURL = table.Column<string>(type: "TEXT", nullable: false),
+                    BranchManager = table.Column<string>(type: "TEXT", nullable: false),
+                    EmployeeCount = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BankBranches", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
@@ -43,6 +59,9 @@ namespace WebApplication2.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "BankBranches");
         }
     }
 }

@@ -10,8 +10,8 @@ using WebApplication2.Models;
 namespace WebApplication2.Migrations
 {
     [DbContext(typeof(BankContext))]
-    [Migration("20240422071118_AddEmployees")]
-    partial class AddEmployees
+    [Migration("20240423105931_Inital")]
+    partial class Inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
