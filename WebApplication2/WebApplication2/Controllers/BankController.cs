@@ -26,8 +26,16 @@ namespace WebApplication2.Controllers
 
         public IActionResult Index()
         {
-            var context = _context;
-            return View(context.BankBranches.ToList());
+            var viewModel = new BankDashboardViewModel();
+            using (var context = _context)
+            {
+                viewModel.BranchList = _context.BankBranches.ToList();
+                viewModel.TotalEmployees = _context.Employees.Count();
+                return View(viewModel);
+            }
+
+
+
         }
 
 
@@ -189,5 +197,7 @@ namespace WebApplication2.Controllers
 
 
         }
+
+
     }
 }

@@ -18,7 +18,7 @@
 
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 50px auto;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -27,7 +27,7 @@
 
         h2 {
             text-align: center;
-            color: #007bff;
+            color: #28a745;
             margin-bottom: 30px;
         }
 
@@ -44,7 +44,24 @@
         .btn {
             margin-top: 10px;
             border-radius: 5px;
+            background-color: #28a745;
+            color: #ffffff;
+            border-color: #28a745;
         }
+
+            .btn:hover {
+                background-color: #218838;
+                border-color: #1e7e34;
+            }
+
+            .btn:focus {
+                box-shadow: none;
+            }
+
+            .btn:active {
+                background-color: #1e7e34;
+                border-color: #1c7430;
+            }
     </style>
 </head>
 <body>
@@ -58,7 +75,7 @@
             <dd class="col-sm-9">@Model.LocationName</dd>
 
             <dt class="col-sm-3">Location URL:</dt>
-            <dd class="col-sm-9"><a href="@Model.LocationURL" class="btn btn-secondary">Location</a></dd>
+            <dd class="col-sm-9"><a href="@Model.LocationURL" class="btn btn-success">Location</a></dd>
 
             <dt class="col-sm-3">Branch Manager:</dt>
             <dd class="col-sm-9">@Model.BranchManager</dd>
@@ -83,7 +100,7 @@
                 }
             </dd>
         </dl>
-        <a asp-controller="Bank" asp-action="AddEmployee" asp-route-Id="@Model.Id" class="btn btn-primary">Add Employee</a>
+        <a asp-controller="Bank" asp-action="AddEmployee" asp-route-Id="@Model.Id" class="btn btn-success">Add Employee</a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
